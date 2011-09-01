@@ -1,7 +1,7 @@
 jQuery UI Resizable Snap extension
 ==================================
-## by Alexander Polomoshnov (alex.polomoshnov@gmail.com)
-## released under [the MIT license](https://github.com/polomoshnov/jQuery-UI-Resizable-Snap-extension/blob/master/LICENSE.txt)
+### by Alexander Polomoshnov (alex.polomoshnov@gmail.com)
+### released under [the MIT license](https://github.com/polomoshnov/jQuery-UI-Resizable-Snap-extension/blob/master/LICENSE.txt)
 
 Unfortunately, the jQuery UI Resizable plugin does not ship with the snap functionality unlike the jQuery UI Draggable plugin that has this very useful functionality out of the box.
 
