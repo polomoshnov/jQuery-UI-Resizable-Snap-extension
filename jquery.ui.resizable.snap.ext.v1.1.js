@@ -2,7 +2,7 @@
  * "jQuery UI Resizable Snap" - Extension to the jQuery UI Resizable plugin for snapping while resizing.
  *
  * @copyright       Copyright 2011, Alexander Polomoshnov
- * @license         MIT license (https://github.com/polomoshnov/jQuery-UI-Resizable-Snap-extension/blob/master/LICENSE.txt)
+ * @license         MIT license (https://raw.github.com/polomoshnov/jQuery-UI-Resizable-Snap-extension/master/LICENSE.txt)
  * @link            https://github.com/polomoshnov/jQuery-UI-Resizable-Snap-extension
  * @version         1.1
  */
