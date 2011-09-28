@@ -4,7 +4,7 @@
  * @copyright       Copyright 2011, Alexander Polomoshnov
  * @license         MIT license (https://raw.github.com/polomoshnov/jQuery-UI-Resizable-Snap-extension/master/LICENSE.txt)
  * @link            https://github.com/polomoshnov/jQuery-UI-Resizable-Snap-extension
- * @version         1.5
+ * @version         1.6
  */
 (function ($) {
 	$.extend($.ui.resizable.prototype.options, { snapTolerance: 20, snapMode: 'both' });
@@ -98,4 +98,66 @@
 	function getTm($el) {
 		return parseInt($el.css('margin-top'), 10) || 0;
 	}
+	
+	// These are patches to the jQuery resizable plugin.
+	// TODO: Write my own resizable plugin instead of messing around with the badly designed and broken native one.
+	function patch(func, afterFunc, beforeFunc) {
+		var fn = $.ui.resizable.prototype[func];
+		$.ui.resizable.prototype[func] = function () {
+			if (beforeFunc) beforeFunc.apply(this, arguments);
+			fn.apply(this, arguments);
+			if (afterFunc) afterFunc.apply(this, arguments);
+		}
+	}
+	
+	patch('_mouseStop', null, function () {
+		if (this._helper) {
+			this.position = { left: parseInt(this.helper.css('left')), top: parseInt(this.helper.css('top')) };
+			this.size = { width: this.helper.outerWidth(), height: this.helper.outerHeight() };
+		}
+	});
+	
+	patch('_mouseStart', function () {
+		if (this._helper) {
+			this.size = { 
+				width: this.size.width - (this.helper.outerWidth() - this.helper.width()), 
+				height: this.size.height - (this.helper.outerHeight() - this.helper.height()) 
+			};
+			this.originalSize = { width: this.size.width, height: this.size.height };
+		}
+	});
+	
+	patch('_renderProxy', function () {
+		if (this._helper) {
+			var ie6 = $.browser.msie && $.browser.version < 7, 
+				ie6offset = (ie6 ? 1 : 0), 
+				pxyoffset = (ie6 ? 2 : -1);
+		
+			this.helper.css({ 
+				left: '+=' + ie6offset, 
+				top: '+=' + ie6offset,
+				width: '-=' + pxyoffset, 
+				height: '-=' + pxyoffset 
+			});
+		}	
+	});
+	
+	var p = $.ui.resizable.prototype.plugins.resize;
+	$.each(p, function (k, v) {
+		if (v[0] == 'ghost') {
+			p.splice(k, 1);
+			return false;
+		}
+	});
+	
+	$.each($.ui.resizable.prototype.plugins.start, function (k, v) {
+		if (v[0] == 'ghost') {
+			var fn = v[1];
+			v[1] = function () {
+				fn.apply(this, arguments);
+				$(this).data('resizable').ghost.css({ width: '100%', height: '100%' });
+			}
+			return false;
+		}
+	});
 })(jQuery);
