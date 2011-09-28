@@ -112,7 +112,7 @@
 	
 	patch('_mouseStop', null, function () {
 		if (this._helper) {
-			this.position = { left: parseInt(this.helper.css('left')), top: parseInt(this.helper.css('top')) };
+			this.position = { left: parseInt(this.helper.css('left'), 10), top: parseInt(this.helper.css('top'), 10) };
 			this.size = { width: this.helper.outerWidth(), height: this.helper.outerHeight() };
 		}
 	});
