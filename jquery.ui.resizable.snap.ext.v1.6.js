@@ -129,15 +129,11 @@
 	
 	patch('_renderProxy', function () {
 		if (this._helper) {
-			var ie6 = $.browser.msie && $.browser.version < 7, 
-				ie6offset = (ie6 ? 1 : 0), 
-				pxyoffset = (ie6 ? 2 : -1);
-		
-			this.helper.css({ 
-				left: '+=' + ie6offset, 
-				top: '+=' + ie6offset,
-				width: '-=' + pxyoffset, 
-				height: '-=' + pxyoffset 
+			this.helper.css({
+				left: this.elementOffset.left,
+				top: this.elementOffset.top,
+				width: this.element.outerWidth(),
+				height: this.element.outerHeight()
 			});
 		}	
 	});
