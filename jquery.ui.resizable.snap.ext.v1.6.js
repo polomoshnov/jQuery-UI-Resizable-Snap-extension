@@ -112,7 +112,9 @@
 	
 	patch('_mouseStop', null, function () {
 		if (this._helper) {
-			this.position = { left: parseInt(this.helper.css('left')), top: parseInt(this.helper.css('top')) };
+			// 0.1 is a dirty hack to not end up with null if 0 is provided (when snapped to the left or top side of the browser window).
+			// TODO: Already mentioned!
+			this.position = { left: parseInt(this.helper.css('left'), 10) || 0.1, top: parseInt(this.helper.css('top'), 10) || 0.1 };
 			this.size = { width: this.helper.outerWidth(), height: this.helper.outerHeight() };
 		}
 	});
@@ -129,15 +131,11 @@
 	
 	patch('_renderProxy', function () {
 		if (this._helper) {
-			var ie6 = $.browser.msie && $.browser.version < 7, 
-				ie6offset = (ie6 ? 1 : 0), 
-				pxyoffset = (ie6 ? 2 : -1);
-		
-			this.helper.css({ 
-				left: '+=' + ie6offset, 
-				top: '+=' + ie6offset,
-				width: '-=' + pxyoffset, 
-				height: '-=' + pxyoffset 
+			this.helper.css({
+				left: this.elementOffset.left,
+				top: this.elementOffset.top,
+				width: this.element.outerWidth(),
+				height: this.element.outerHeight()
 			});
 		}	
 	});
