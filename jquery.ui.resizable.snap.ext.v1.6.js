@@ -112,7 +112,7 @@
 	
 	patch('_mouseStop', null, function () {
 		if (this._helper) {
-			// 0.1 is a dirty hack to not end up with null if 0 is provided (when snapped to the left or top side of the window).
+			// 0.1 is a dirty hack to not end up with null if 0 is provided (when snapped to the left or top side of the browser window).
 			// TODO: Already mentioned!
 			this.position = { left: parseInt(this.helper.css('left'), 10) || 0.1, top: parseInt(this.helper.css('top'), 10) || 0.1 };
 			this.size = { width: this.helper.outerWidth(), height: this.helper.outerHeight() };
