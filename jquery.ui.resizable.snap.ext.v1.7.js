@@ -32,7 +32,7 @@
 		resize: function () {
 			var ls = [], ts = [], ws = [], hs = [],
 				inst = $(this).data('resizable'),
-				axises = inst.axis.split(''),
+				axes = inst.axis.split(''),
 				st = inst.options.snapTolerance,
 				md = inst.options.snapMode,
 				l = inst.position.left + inst.lm, _l = l - st,
@@ -47,7 +47,7 @@
 					
 				if (w < 0 || h < 0) return;
 				
-				$.each(axises, function (k, axis) {
+				$.each(axes, function (k, axis) {
 					if (md == 'outer') {
 						switch (axis) {
 							case 'w': case 'e': if (w > st * 2) return; break;
