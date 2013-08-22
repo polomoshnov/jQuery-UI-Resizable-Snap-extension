@@ -9,4 +9,4 @@ But here comes **jQuery UI Resizable Snap extension** to the rescue! It enhances
 
 **jQuery UI Resizable Snap extension** exposes three options to the jQuery UI Resizable plugin: snap, snapMode, and snapTolerance. For the information on those three options, please refer to the official jQuery UI Draggable plugin documentation at [http://jqueryui.com/demos/draggable/](http://jqueryui.com/demos/draggable/).
 
-To see **jQuery UI Resizable Snap extension** in action please check out [this demo](http://bit.ly/jquery-ui-resizable-snap-plugin).
+To see **jQuery UI Resizable Snap extension** in action please check out [this demo](http://fiddle.jshell.net/5xB7S/show/light/).
