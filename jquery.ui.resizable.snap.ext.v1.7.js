@@ -11,14 +11,14 @@
 	
 	$.ui.plugin.add('resizable', 'snap', {
 		start: function () {
-			var $this = $(this), inst = $this.data('resizable'), snap = inst.options.snap;
+			var $this = $(this), inst = $this.data('ui-resizable'), snap = inst.options.snap;
 			inst.ow = inst.helper.outerWidth() - inst.size.width;
 			inst.oh = inst.helper.outerHeight() - inst.size.height;
 			inst.lm = getLm($this);
 			inst.tm = getTm($this);
 			inst.coords = [];
 			
-			$(typeof snap == 'string' ? snap : ':data(resizable)').each(function () {
+			$(typeof snap == 'string' ? snap : ':data(ui-resizable)').each(function () {
 				if (this == inst.element[0] || this == inst.helper[0]) return;
 			
 				var $el = $(this), p = $el.position(), 
@@ -31,7 +31,7 @@
 		},
 		resize: function () {
 			var ls = [], ts = [], ws = [], hs = [],
-				inst = $(this).data('resizable'),
+				inst = $(this).data('ui-resizable'),
 				axes = inst.axis.split(''),
 				st = inst.options.snapTolerance,
 				md = inst.options.snapMode,
@@ -153,7 +153,7 @@
 			var fn = v[1];
 			v[1] = function () {
 				fn.apply(this, arguments);
-				$(this).data('resizable').ghost.css({ width: '100%', height: '100%' });
+				$(this).data('ui-resizable').ghost.css({ width: '100%', height: '100%' });
 			}
 			return false;
 		}
