@@ -4,7 +4,7 @@
  * @copyright       Copyright 2011, Alexander Polomoshnov
  * @license         MIT license (https://raw.github.com/polomoshnov/jQuery-UI-Resizable-Snap-extension/master/LICENSE.txt)
  * @link            https://github.com/polomoshnov/jQuery-UI-Resizable-Snap-extension
- * @version         1.7
+ * @version         1.8
  */
 (function ($) {
 	$.extend($.ui.resizable.prototype.options, { snapTolerance: 20, snapMode: 'both' });
