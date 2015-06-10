@@ -1,0 +1,51 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<style type="text/css">
+.box {
+    position: absolute !important;
+    width: 200px;
+    height: 200px;
+    background: silver;
+}
+
+.box:nth-of-type(1) {
+    left: 10px;
+    top: 10px;
+    background: red;
+}
+
+.box:nth-of-type(2) {
+    left: 110px;
+    top: 110px;
+    background: green;
+}
+
+.box:nth-of-type(3) {
+    left: 210px;
+    top: 210px;
+    background: blue;
+}
+</style>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/jquery-ui.min.js"></script>
+<link type="text/css" rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/themes/smoothness/jquery-ui.css" />
+<script type="text/javascript" src="https://raw.githubusercontent.com/polomoshnov/jQuery-UI-Resizable-Snap-extension/master/jquery.ui.resizable.snap.ext.js"></script>
+<script type="text/javascript">
+(function ($) {
+    $(document).ready(function () {
+        $('.box').draggable({snap:true}).resizable({
+          snap: true,
+          handles: 'all'
+        });
+    });
+})(jQuery);
+</script>
+</head>
+<body>
+<div class="box"></div>
+<div class="box"></div>
+<div class="box"></div>
+</body>
+</html>
