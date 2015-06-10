@@ -1,1 +1,1 @@
-This is a demo page for [the jQuery UI Resizable Snap extension](https://github.com/polomoshnov/jQuery-UI-Resizable-Snap-extension).
+This is a demo page for [the jQuery UI Resizable Snap extension](https://github.com/polomoshnov/jQuery-UI-Resizable-Snap-extension). See the extension in action at http://polomoshnov.github.io/jQuery-UI-Resizable-Snap-extension/
