@@ -4,7 +4,7 @@
  * @copyright       Copyright 2011, Alexander Polomoshnov
  * @license         MIT license (https://raw.github.com/polomoshnov/jQuery-UI-Resizable-Snap-extension/master/LICENSE.txt)
  * @link            https://github.com/polomoshnov/jQuery-UI-Resizable-Snap-extension
- * @version         1.9
+ * @version         1.9.1
  */
 (function ($) {
 	$.extend($.ui.resizable.prototype.options, { snapTolerance: 20, snapMode: 'both' });
@@ -35,8 +35,8 @@
 				axes = inst.axis.split(''),
 				st = inst.options.snapTolerance,
 				md = inst.options.snapMode,
-				l = inst.elementOffset.left + inst.lm, _l = l - st,
-				t = inst.elementOffset.top + inst.tm, _t = t - st,
+				l = inst.position.left + inst.lm, _l = l - st,
+				t = inst.position.top + inst.tm, _t = t - st,
 				r = l + inst.size.width + inst.ow, _r = r + st,
 				b = t + inst.size.height + inst.oh, _b = b + st;
 				
