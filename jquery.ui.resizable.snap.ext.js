@@ -21,7 +21,7 @@
 			$(typeof snap == 'string' ? snap : ':data(ui-resizable)').each(function () {
 				if (this == inst.element[0] || this == inst.helper[0]) return;
 			
-				var $el = $(this), p = $el.position(), 
+				var $el = $(this), p = $el.offset(),  // TODO: o
 					l = p.left + getLm($el), t = p.top + getTm($el);
 					
 				inst.coords.push({ 
@@ -35,8 +35,8 @@
 				axes = inst.axis.split(''),
 				st = inst.options.snapTolerance,
 				md = inst.options.snapMode,
-				l = inst.position.left + inst.lm, _l = l - st,
-				t = inst.position.top + inst.tm, _t = t - st,
+				l = inst.offset.left + inst.lm, _l = l - st,
+				t = inst.offset.top + inst.tm, _t = t - st,
 				r = l + inst.size.width + inst.ow, _r = r + st,
 				b = t + inst.size.height + inst.oh, _b = b + st;
 				
