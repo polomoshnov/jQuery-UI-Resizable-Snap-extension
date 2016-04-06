@@ -148,6 +148,14 @@
 		}
 	});
 	
+	var gridIndex = -1;
+	$.each(p, function (k, v) {
+		if (v[0] == 'grid') gridIndex = k;
+		if (gridIndex > 0 && v[0] == 'snap') {
+			p.splice(gridIndex, 0, p.splice(k, 1)[0]);
+		}
+	});
+
 	$.each($.ui.resizable.prototype.plugins.start, function (k, v) {
 		if (v[0] == 'ghost') {
 			var fn = v[1];
