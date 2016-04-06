@@ -17,6 +17,8 @@
 			inst.lm = getLm($this);
 			inst.tm = getTm($this);
 			inst.coords = [];
+			inst.hasGridX = inst.options.grid && inst.options.grid[0] > 1;
+			inst.hasGridY = inst.options.grid && inst.options.grid[1] > 1;
 			
 			$(typeof snap == 'string' ? snap : ':data(ui-resizable)').each(function () {
 				if (this == inst.element[0] || this == inst.helper[0]) return;
@@ -61,10 +63,10 @@
 					}
 					
 					switch (axis) {
-						case 'w': ls.push(getC(l - coords.l, l - coords.r, st)); break;
-						case 'n': ts.push(getC(t - coords.t, t - coords.b, st)); break;
-						case 'e': ws.push(getC(r - coords.l, r - coords.r, st)); break;
-						case 's': hs.push(getC(b - coords.t, b - coords.b, st));
+						case 'w': inst.hasGridX || ls.push(getC(l - coords.l, l - coords.r, st)); break;
+						case 'n': inst.hasGridY || ts.push(getC(t - coords.t, t - coords.b, st)); break;
+						case 'e': inst.hasGridX || ws.push(getC(r - coords.l, r - coords.r, st)); break;
+						case 's': inst.hasGridY || hs.push(getC(b - coords.t, b - coords.b, st));
 					}
 				});
 			});
@@ -145,14 +147,6 @@
 		if (v[0] == 'ghost') {
 			p.splice(k, 1);
 			return false;
-		}
-	});
-	
-	var gridIndex = -1;
-	$.each(p, function (k, v) {
-		if (v[0] == 'grid') gridIndex = k;
-		if (gridIndex > 0 && v[0] == 'snap') {
-			p.splice(gridIndex, 0, p.splice(k, 1)[0]);
 		}
 	});
 
