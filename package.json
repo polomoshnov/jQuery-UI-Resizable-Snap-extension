@@ -1,0 +1,8 @@
+{
+  "name": "jquery.ui.resizable.snap.ext",
+  "version": "1.9.4",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/cudasteve/jQuery-UI-Resizable-Snap-extension"
+  }
+}

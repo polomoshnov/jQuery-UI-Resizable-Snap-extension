@@ -1,7 +1,7 @@
 {
   "name": "jquery.ui.resizable.snap.ext",
   "description": "Enhance the jQuery UI Resizable plugin with the same snap functionality that is offered by the jQuery UI Draggable plugin.",
-  "version": "1.9.3",
+  "version": "1.9.4",
   "keywords": [
     "jquery",
     "snap",
