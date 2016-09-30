@@ -17,11 +17,13 @@
 			inst.lm = getLm($this);
 			inst.tm = getTm($this);
 			inst.coords = [];
+			inst.hasGridX = inst.options.grid && inst.options.grid[0] > 1;
+			inst.hasGridY = inst.options.grid && inst.options.grid[1] > 1;
 			
 			$(typeof snap == 'string' ? snap : ':data(ui-resizable)').each(function () {
 				if (this == inst.element[0] || this == inst.helper[0]) return;
 			
-				var $el = $(this), p = $el.position(), 
+				var $el = $(this), p = $el.offset(),  // TODO: o
 					l = p.left + getLm($el), t = p.top + getTm($el);
 					
 				inst.coords.push({ 
@@ -35,8 +37,8 @@
 				axes = inst.axis.split(''),
 				st = inst.options.snapTolerance,
 				md = inst.options.snapMode,
-				l = inst.position.left + inst.lm, _l = l - st,
-				t = inst.position.top + inst.tm, _t = t - st,
+				l = inst.offset.left + inst.lm, _l = l - st,
+				t = inst.offset.top + inst.tm, _t = t - st,
 				r = l + inst.size.width + inst.ow, _r = r + st,
 				b = t + inst.size.height + inst.oh, _b = b + st;
 				
@@ -61,10 +63,10 @@
 					}
 					
 					switch (axis) {
-						case 'w': ls.push(getC(l - coords.l, l - coords.r, st)); break;
-						case 'n': ts.push(getC(t - coords.t, t - coords.b, st)); break;
-						case 'e': ws.push(getC(r - coords.l, r - coords.r, st)); break;
-						case 's': hs.push(getC(b - coords.t, b - coords.b, st));
+						case 'w': inst.hasGridX || ls.push(getC(l - coords.l, l - coords.r, st)); break;
+						case 'n': inst.hasGridY || ts.push(getC(t - coords.t, t - coords.b, st)); break;
+						case 'e': inst.hasGridX || ws.push(getC(r - coords.l, r - coords.r, st)); break;
+						case 's': inst.hasGridY || hs.push(getC(b - coords.t, b - coords.b, st));
 					}
 				});
 			});
@@ -147,7 +149,7 @@
 			return false;
 		}
 	});
-	
+
 	$.each($.ui.resizable.prototype.plugins.start, function (k, v) {
 		if (v[0] == 'ghost') {
 			var fn = v[1];
